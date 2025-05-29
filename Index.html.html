@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cesar | Escritor de Ficção e Terror</title>
+    <style>
+        /* FONTES */
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300&family=Cinzel+Decorative&family=Helvetica+Neue&display=swap');
+        
+        /* ESTILOS GERAIS */
+        body {
+            background-color: #0F0F0F;
+            color: #F0F0F0;
+            font-family: 'Helvetica Neue', sans-serif;
+            margin: 0;
+            line-height: 1.6;
+        }
+        
+        /* CABEÇALHO COM EFEITO DE SANGUE */
+        header {
+            padding: 20px;
+            border-bottom: 1px solid #2A2A2A;
+        }
+        h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 300;
+            display: inline-block;
+            border-bottom: 1px solid #8B0000;
+            margin: 0;
+            transition: all 0.3s;
+        }
+        h1:hover {
+            text-shadow: 0 0 10px #8B0000;
+        }
+        nav {
+            float: right;
+        }
+        nav a {
+            color: #F0F0F0;
+            text-decoration: none;
+            margin-left: 20px;
+            font-size: 14px;
+            position: relative;
+            transition: all 0.3s;
+        }
+        nav a:hover {
+            color: #8B0000;
+        }
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 1px;
+            background: #8B0000;
+            bottom: -3px;
+            left: 0;
+            transition: width 0.3s;
+        }
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* BANNER HERO */
+        .hero {
+            text-align: center;
+            padding: 100px 20px;
+            background: #000 url('Capa-Livro.jpg') center/cover no-repeat;
+            position: relative;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+        }
+        .hero h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            position: relative;
+            text-shadow: 0 0 15px #000;
+        }
+
+        /* FORMULÁRIO COM PULSO DE SANGUE */
+        .form-container {
+            max-width: 500px;
+            margin: 20px auto;
+            padding: 20px;
+            background: rgba(15, 15, 15, 0.8);
+            border: 1px solid #8B0000;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 1s ease-out;
+        }
+        .form-container:hover {
+            box-shadow: 0 0 30px rgba(139, 0, 0, 0.5);
+        }
+        .form-container input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            background: #1A1A1A;
+            border: 1px solid #8B0000;
+            color: white;
+            transition: all 0.3s;
+        }
+        .form-container input:focus {
+            outline: none;
+            border-color: #FF0000;
+            box-shadow: 0 0 10px #8B0000;
+        }
+        .form-container button {
+            background: #8B0000;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+        .form-container button:hover {
+            background: #6B0000;
+            transform: translateY(-3px);
+        }
+        .form-container button::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: rgba(255, 255, 255, 0.1);
+            transform: rotate(45deg);
+            transition: all 0.5s;
+            pointer-events: none;
+        }
+        .form-container button:hover::after {
+            left: 100%;
+        }
+
+        /* SEÇÃO DO LIVRO COM EFEITO DE LEVITAÇÃO */
+        .book {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 0 20px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 1s ease-out;
+            gap: 50px;
+        }
+        .book:hover {
+            transform: translateY(0) scale(1.02);
+        }
+        .book-cover {
+            width: 300px;
+            height: 521px;
+            background: #2A2A2A url('file:///E:/MEU%20SITES%20TESTE/java/teste/fotos/Capa-Livro.jpg.jpg') center/cover no-repeat;
+            box-shadow: 0 0 15px rgba(139, 0, 0, 0.5);
+            border: 1px solid #8B0000;
+            flex-shrink: 0;
+            transform: perspective(1000px) rotateY(-15deg);
+            transition: all 0.5s ease;
+        }
+        .book-cover:hover {
+            transform: perspective(1000px) rotateY(0deg) scale(1.05);
+            box-shadow: 0 0 30px #8B0000;
+        }
+        .book-info h3 {
+            font-family: 'Cinzel Decorative', cursive;
+            color: #8B0000;
+            font-size: 1.8em;
+            margin-top: 0;
+            transition: all 0.3s;
+        }
+        .book-info h3:hover {
+            text-shadow: 0 0 8px #8B0000;
+        }
+        .book-info a {
+            color: #8B0000;
+            text-decoration: none;
+            border-bottom: 1px dashed #8B0000;
+            display: inline-block;
+            margin-top: 15px;
+            transition: all 0.3s;
+        }
+        .book-info a:hover {
+            border-bottom: 1px solid #8B0000;
+            letter-spacing: 1px;
+        }
+
+        /* RODAPÉ COM ÍCONES PULSANTES */
+        footer {
+            text-align: center;
+            padding: 60px;
+            margin-top: 60px;
+            border-top: 1px solid #2A2A2A;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 1s ease-out 0.2s;
+        }
+        .social-icons img {
+            width: 24px;
+            margin: 0 10px;
+            transition: all 0.3s;
+        }
+        .social-icons a:hover img {
+            transform: scale(1.3) rotate(10deg);
+            filter: drop-shadow(0 0 15px #8B0000);
+            animation: pulse 1.5s infinite;
+        }
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+        footer p {
+            color: #2A2A2A;
+            font-size: 12px;
+            margin-top: 15px;
+        }
+
+        /* ANIMAÇÕES */
+        .aparecer {
+            opacity: 1 !important;
+            transform: translateY(0) !important;
+        }
+
+        /* RESPONSIVO */
+        @media (max-width: 768px) {
+            .book {
+                flex-direction: column;
+                text-align: center;
+                gap: 30px;
+            }
+            .book-cover {
+                width: 250px;
+                height: 434px;
+            }
+            nav {
+                float: none;
+                text-align: center;
+                margin-top: 15px;
+            }
+            nav a {
+                display: inline-block;
+                margin: 0 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- CABEÇALHO -->
+    <header>
+        <h1>Cesar</h1>
+        <nav>
+            <a href="carrinho.html">Seu Carrinho</a>
+            <a href="aba-sobre.html">Sobre</a>
+            <a href="livros.html">Livros</a>
+            <a href="#">Blog</a>
+            <a href="#">Contato</a>
+        </nav>
+    </header>
+    
+    <!-- BANNER HERO -->
+    <section class="hero">
+        <h2>"Entre nas sombras onde as histórias sussurram."</h2>
+        
+        <!-- FORMULÁRIO DE CAPTURA -->
+        <div class="form-container">
+            <form action="https://forms.gle/HU5hTWvi9WeBZD8v6" method="POST" target="_blank">
+                <h3 style="color: #8B0000; font-family: 'Cinzel Decorative'; margin-bottom: 15px;">AVISE-ME DO LANÇAMENTO</h3>
+                
+                <input type="text" name="entry.2005620554" placeholder="Seu nome" required>
+                <input type="email" name="entry.1045781291" placeholder="Seu melhor e-mail" required>
+                
+                <button type="submit">QUERO RECEBER ATUALIZAÇÕES!</button>
+            </form>
+        </div>
+    </section>
+    
+    <!-- SEÇÃO DO LIVRO COM CAPA -->
+    <section class="book">
+        <div class="book-cover"></div>
+        <div class="book-info">
+            <h3>O LEGADO DE HAROLD FAULKNER</h3>
+            <p>-Ele me olhou como se soubesse os meus pecados- Arthur. Em breve nas livrarias.</p>
+            <a href="#" id="leia-trecho">LEIA UM TRECHO →</a>
+        </div>
+    </section>
+    
+    <!-- RODAPÉ -->
+    <footer>
+        <div class="social-icons">
+            <a href="https://instagram.com/yo.cesar_" target="_blank">
+                <img src="file:///E:/MEU%20SITES%20TESTE/java/teste/fotos/Insta-Logo.jpg.jpg" alt="Instagram">
+            </a> 
+        </div>
+        <p>© 2024 César. Todos os direitos sombrios reservados.</p>
+    </footer>
+
+    <!-- SCRIPTS -->
+    <script>
+        // Animação das seções
+        document.addEventListener('DOMContentLoaded', function() {
+            const sections = document.querySelectorAll('.book, footer, .form-container');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('aparecer');
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+
+            // Trecho secreto
+            document.getElementById('leia-trecho').addEventListener('click', function(e) {
+                e.preventDefault();
+                alert("TRECHO SECRETO: 'O grupo seguiu pelo corredor da direita, iluminando cada centímetro daquele laboratório esquecido pelo tempo. A cada passo, o cheiro de putrefação parecia mais forte, como se o próprio ar gritasse para que saíssem dali. Até que, entre vidros quebrados, cabos soltos e marcas de garras nas paredes, seus olhos cruzaram com um tanque... Dentro, algo que jamais deveria existir. Um híbrido, formado pela junção de criaturas que não deveriam ter se encontrado nem na imaginação mais doentia da natureza. E, pela rachadura no vidro, parecia que não estava mais lá...'");
+            });
+        });
+    </script>
+</body>
+</html>
